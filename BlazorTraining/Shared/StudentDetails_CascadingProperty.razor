@@ -1,0 +1,39 @@
+﻿@using BlazorTraining.Model
+<div>
+    <span>Id: </span>
+    <span>@Id</span>
+</div>
+<StudentDetails_CascadingProperty_SubItem ></StudentDetails_CascadingProperty_SubItem>
+<div>
+    <span>Wiek: </span>
+    <input type="number" @bind-value="@Age" />
+    <span>@Age</span>
+</div>
+<div>
+    <span>Czy konto aktywne?: </span>
+    <input type="checkbox" @bind-value="@IsActive" checked="@(@IsActive ? "checked":null)" />
+    <span>@IsActive</span>
+</div>
+
+<div>
+    @if (IsActive)
+    {
+        <span>konto aktywne</span>
+    }
+    else
+    {
+        <span>konto nieaktywne</span>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    [Parameter]
+    public int Age { get; set; }
+
+    [Parameter]
+    public bool IsActive { get; set; }
+
+}

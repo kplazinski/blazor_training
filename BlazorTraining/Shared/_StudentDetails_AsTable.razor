@@ -1,0 +1,26 @@
+﻿@using BlazorTraining.Model
+<tr>
+    <td><span>@Id</span></td>
+    <td><input type="text" value="@Name" /></td>
+    <td><input type="text" @bind-value="@LastName" @bind-value:event="oninput" /></td>
+    <td><input type="number" @bind-value="@Age" /></td>
+    <td><input type="checkbox" @bind-value="@IsActive" checked="@(@IsActive ? "checked":null)" /></td>
+</tr>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    [Parameter]
+    public string Name { get; set; }
+
+    [Parameter]
+    public string LastName { get; set; }
+
+    [Parameter]
+    public int Age { get; set; }
+
+    [Parameter]
+    public bool IsActive { get; set; }
+
+}

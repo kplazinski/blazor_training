@@ -1,0 +1,15 @@
+﻿@page "/List-with-component-one-property"
+@using BlazorTraining.Model
+
+@foreach (var student in students)
+{
+    <StudentDetails_SingleProperty Student=student></StudentDetails_SingleProperty>
+} 
+
+@code {
+    List<Student> students = new List<Student>
+    {
+        new Student(1, "Jan", "Kowalski", 23, true),
+        new Student(2, "Anna", "Nowak", 22, false)
+    };
+}

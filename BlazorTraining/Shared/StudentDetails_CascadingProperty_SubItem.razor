@@ -1,0 +1,18 @@
+﻿
+<div>
+    <span>Imię: </span>
+    <input type="text" value="@Name" />
+    <span>@Name</span>
+</div>
+<div>
+    <span>Nazwisko: </span>
+    <input type="text" @bind-value="@LastName" @bind-value:event="oninput" />
+    <span>@LastName</span>
+</div>
+@code {
+    [CascadingParameter(Name="Name")]
+    public string Name { get; set; }
+
+    [CascadingParameter(Name="LastName")]
+    public string LastName { get; set; }
+}

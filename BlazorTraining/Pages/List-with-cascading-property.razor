@@ -1,0 +1,23 @@
+﻿@page "/List-with-cascading-property"
+@using BlazorTraining.Model
+
+@foreach (var student in students)
+{
+    <CascadingValue Name="Name" Value="@student.Name">
+        <CascadingValue Name="LastName" Value="@student.LastName">
+            <StudentDetails_CascadingProperty 
+                                          Age=@student.Age
+                                          Id=@student.Id
+                                          IsActive=@student.IsActive></StudentDetails_CascadingProperty>
+        </CascadingValue>
+    </CascadingValue>
+
+}
+
+@code {
+    List<Student> students = new List<Student>
+    {
+        new Student(1, "Jan", "Kowalski", 23, true),
+        new Student(2, "Anna", "Nowak", 22, false)
+    };
+}

@@ -1,0 +1,42 @@
+﻿@using BlazorTraining.Model
+<div>
+    <span>Id: </span>
+    <span>@Student.Id</span>
+</div>
+<div>
+    <span>Imię: </span>
+    <input type="text" value="@Student.Name" />
+    <span>@Student.Name</span>
+</div>
+<div>
+    <span>Nazwisko: </span>
+    <input type="text" @bind-value="@Student.LastName" @bind-value:event="oninput" />
+    <span>@Student.LastName</span>
+</div>
+<div>
+    <span>Wiek: </span>
+    <input type="number" @bind-value="@Student.Age" />
+    <span>@Student.Age</span>
+</div>
+<div>
+    <span>Czy konto aktywne?: </span>
+    <input type="checkbox" @bind-value="@Student.IsActive" checked="@(@Student.IsActive ? "checked":null)" />
+    <span>@Student.IsActive</span>
+</div>
+
+<div>
+    @if (Student.IsActive)
+    {
+        <span>konto aktywne</span>
+    }
+    else
+    {
+        <span>konto nieaktywne</span>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public Student Student { get; set; }
+
+}

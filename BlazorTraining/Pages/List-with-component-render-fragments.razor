@@ -1,0 +1,39 @@
+﻿@page "/List-with-component-render-fragments"
+@using BlazorTraining.Model
+
+ @foreach (var student in students)
+{
+    <StudentDetails_RenderFragments Student=student OnActiveStatusChanged=ChangeCounter>
+        <Header>
+            <b><i><u>To jest student o ID: @student.Id</u></i></b>
+        </Header>
+    </StudentDetails_RenderFragments>
+}
+
+<div>
+    Ilość aktywnych kont: @ActiveAccountsCounter
+</div>
+
+@code {
+    private int ActiveAccountsCounter { get; set; }
+    List<Student> students = null;
+
+    protected override void OnInitialized()
+    {
+        students = new List<Student>
+        {
+            new Student(1, "Jan", "Kowalski", 23, true),
+            new Student(2, "Anna", "Nowak", 22, false)
+        };
+
+        ActiveAccountsCounter = students.Count(x => x.IsActive);
+    }
+
+    private void ChangeCounter(bool activeStatusChanged)
+    {
+        if (activeStatusChanged)
+            ActiveAccountsCounter++;
+        else
+            ActiveAccountsCounter--;
+    }
+}

@@ -1,0 +1,42 @@
+﻿@page "/both-directions-component-bind"
+@using BlazorTraining.Model
+
+<div>
+    <span>Id: </span>
+    <span>@student.Id</span>
+</div>
+<div>
+    <span>Imię: </span>
+    <input type="text" value="@student.Name" />
+    <span>@student.Name</span>
+</div>
+<div>
+    <span>Nazwisko: </span>
+    <input type="text" @bind-value="@student.LastName" @bind-value:event="oninput" />
+    <span>@student.LastName</span>
+</div>
+<div>
+    <span>Wiek: </span>
+    <input type="number" @bind-value="@student.Age" />
+    <span>@student.Age</span>
+</div>
+<div>
+    <span>Czy konto aktywne?: </span>
+    <input type="checkbox" @bind-value="@student.IsActive" checked="@(@student.IsActive ? "checked":null)" />
+    <span>@student.IsActive</span>
+</div>
+
+<div>
+    @if(student.IsActive)
+    {
+        <span>konto aktywne</span>
+    }
+    else
+    {
+        <span>konto nieaktywne</span>
+    }
+</div>
+
+@code {
+    Student student = new Student(1, "Jan", "Kowalski", 23, true);
+}

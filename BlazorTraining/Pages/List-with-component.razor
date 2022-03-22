@@ -1,0 +1,19 @@
+﻿@page "/list-with-component"
+@using BlazorTraining.Model
+
+@foreach (var student in students)
+{
+    <StudentDetails Name=@student.Name
+                LastName=@student.LastName
+                Age=@student.Age
+                Id=@student.Id
+                IsActive=@student.IsActive></StudentDetails>
+}
+
+@code {
+    List<Student> students = new List<Student>
+    {
+        new Student(1, "Jan", "Kowalski", 23, true),
+        new Student(2, "Anna", "Nowak", 22, false)
+    };
+}
