@@ -5,24 +5,24 @@
 </div>
 <StudentDetails_CascadingProperty_SubItem ></StudentDetails_CascadingProperty_SubItem>
 <div>
-    <span>Wiek: </span>
+    <span>Age: </span>
     <input type="number" @bind-value="@Age" />
     <span>@Age</span>
 </div>
 <div>
-    <span>Czy konto aktywne?: </span>
+    <span>Is active?: </span>
     <input type="checkbox" @bind-value="@IsActive" checked="@(@IsActive ? "checked":null)" />
     <span>@IsActive</span>
 </div>
 
 <div>
-    @if (IsActive)
+    @if(IsActive)
     {
-        <span>konto aktywne</span>
+        <span>Active account</span>
     }
     else
     {
-        <span>konto nieaktywne</span>
+        <span>Inactive account</span>
     }
 </div>
 

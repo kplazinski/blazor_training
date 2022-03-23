@@ -1,0 +1,9 @@
+﻿<input type=@InputType @attributes=OtherAttributes />
+
+@code {
+    [Parameter]
+    public string InputType { get; set; }
+
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object> OtherAttributes{ get; set; }
+}

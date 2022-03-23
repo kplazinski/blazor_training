@@ -6,30 +6,30 @@
     <span>@student.Id</span>
 </div>
 <div>
-    <span>Imię: </span>
+    <span>Name: </span>
     <input type="text" value="@student.Name" />
 </div>
 <div>
-    <span>Nazwisko: </span>
+    <span>Last name: </span>
     <input type="text" value="@student.LastName" />
 </div>
 <div>
-    <span>Wiek: </span>
+    <span>Age: </span>
     <input type="number" value="@student.Age" />
 </div>
 <div>
-    <span>Czy konto aktywne?: </span>
+    <span>Is active?: </span>
     <input type="checkbox" checked="@(@student.IsActive ? "checked":null)" />
 </div>
 
 <div>
     @if(student.IsActive)
     {
-        <span>konto aktywne</span>
+        <span>Active account</span>
     }
     else
     {
-        <span>konto nieaktywne</span>
+        <span>Inactive account</span>
     }
 </div>
 

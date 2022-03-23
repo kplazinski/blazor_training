@@ -4,34 +4,34 @@
     <span>@Student.Id</span>
 </div>
 <div>
-    <span>Imię: </span>
+    <span>Name: </span>
     <input type="text" value="@Student.Name" />
     <span>@Student.Name</span>
 </div>
 <div>
-    <span>Nazwisko: </span>
+    <span>Last name: </span>
     <input type="text" @bind-value="@Student.LastName" @bind-value:event="oninput" />
     <span>@Student.LastName</span>
 </div>
 <div>
-    <span>Wiek: </span>
+    <span>Age: </span>
     <input type="number" @bind-value="@Student.Age" />
     <span>@Student.Age</span>
 </div>
 <div>
-    <span>Czy konto aktywne?: </span>
+    <span>Is active?: </span>
     <input type="checkbox" @onchange=ChangeValue checked="@(@Student.IsActive ? "checked":null)" />
     <span>@Student.IsActive</span>
 </div>
 
 <div>
-    @if (Student.IsActive)
+    @if(Student.IsActive)
     {
-        <span>konto aktywne</span>
+        <span>Active account</span>
     }
     else
     {
-        <span>konto nieaktywne</span>
+        <span>Inactive account</span>
     }
 </div>
 

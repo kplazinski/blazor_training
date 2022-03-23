@@ -1,0 +1,36 @@
+﻿@page "/attribute-splatting"
+
+<div>
+    <span>Passing dictionary of attributs</span>
+    <input @attributes=MyAttributes />
+</div>
+<div>
+    <span>Passing dictionary of unexpected attributes</span>
+    <Attributes InputType="Text" class="not-matched-class" max-length="5"></Attributes>
+</div>
+<div>
+    <span>Overriding type (because not captured attributes are set later than InputType in the component)</span>
+    <Attributes InputType="Text" type="number" class="not-matched-class" max-length="5"></Attributes>
+</div>
+<div>
+    <span>Protecting the InputType (because not captured attributes are set before than InputType in the component)</span>
+    <AttributesWithProtection InputType="Text" type="number" class="not-matched-class" max-length="5"></AttributesWithProtection>
+</div>
+@code {
+    Dictionary<string, object> MyAttributes;
+    Dictionary<string, object> OtherInputAttributes;
+    protected override void OnInitialized()
+    {
+        MyAttributes = new Dictionary<string, object>()
+        {
+            {"type","text"},
+            {"class","some-input-class"},
+            {"max-length","50" }
+        };
+
+        OtherInputAttributes = new Dictionary<string, object>()
+        {
+            {"class","some-input-class"}
+        };
+    }
+}

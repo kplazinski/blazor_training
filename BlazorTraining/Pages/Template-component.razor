@@ -1,12 +1,12 @@
 ﻿@page "/template-component"
 @using BlazorTraining.Model
 
-<TemplateComponent Title="Studenci" Items=students>
+<TemplateComponent Title="Students list" Items=students>
     <HeaderTemplate>
-        <th>Imię</th>
-        <th>Nazwisko</th>
-        <th>Wiek</th>
-        <th>Czy konto aktywne?</th>
+        <th>Name</th>
+        <th>Last Name</th>
+        <th>Age</th>
+        <th>Is active?</th>
     </HeaderTemplate>
     <RowTemplate>
         <td>@context.Name</td>
@@ -16,12 +16,12 @@
     </RowTemplate>
 </TemplateComponent>
 
-<TemplateComponent Title="Firmy" Items=companies Context=c>
+<TemplateComponent Title="Companies list" Items=companies Context=c>
     <HeaderTemplate>
-        <th>Nazwa firmy</th>
-        <th>Ulica</th>
-        <th>Miasto</th>
-        <th>Kraj</th>
+        <th>Company name</th>
+        <th>Street</th>
+        <th>City</th>
+        <th>Country</th>
     </HeaderTemplate>
     <RowTemplate>
         <td>@c.CompanyName</td>
@@ -40,7 +40,7 @@
 
     List<Company> companies = new List<Company>
     {
-        new Company(1, "Firma1", new CompanyAddress("Prosta","Warszawa","Polska")),
-        new Company(2, "Firma2", new CompanyAddress("Krzywa","Kraków", "Polska"))
+        new Company(1, "Company1", new CompanyAddress("Prosta","Warszawa","Polska")),
+        new Company(2, "Company2", new CompanyAddress("Krzywa","Kraków", "Polska"))
     };
 }

@@ -1,14 +1,14 @@
-﻿
-<div>
-    <span>Imię: </span>
+﻿<div>
+    <span>Name: </span>
     <input type="text" value="@Name" />
     <span>@Name</span>
 </div>
 <div>
-    <span>Nazwisko: </span>
+    <span>Last name: </span>
     <input type="text" @bind-value="@LastName" @bind-value:event="oninput" />
     <span>@LastName</span>
 </div>
+
 @code {
     [CascadingParameter(Name="Name")]
     public string Name { get; set; }
