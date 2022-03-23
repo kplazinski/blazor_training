@@ -1,0 +1,59 @@
+﻿@page "/js-examples"
+@using BlazorTraining.Extensions
+@inject IJSRuntime JsRuntime
+@inject IToastService ToastService
+
+<div>
+    <span>Simple alert</span>
+    <input type="text" @bind-value=AlertText />
+    <button @onclick=ShowAlert>Alert!</button>
+</div>
+
+<div>
+    <span>Confirm</span>
+    <button @onclick=ShowDescription>Confirm!</button>
+    @if (ShouldShowDescription)
+    {
+        <span>Description</span>   
+    }
+</div>
+
+<div>
+    <span>Blazored toast</span>
+    <button @onclick=ShowToast>Toast</button>
+</div>
+
+<div>
+    <span>Sweet alert 2</span>
+    <button @onclick=ShowSweetAlert>Sweet alert</button>
+    <button @onclick=ShowSweetAlertAdvanced>Advanced Sweet alert</button>
+</div>
+
+@code {
+    private string AlertText{ get; set; }
+    private bool ShouldShowDescription { get; set; }
+    private async Task ShowAlert()
+    {
+        await JsRuntime.InvokeVoidAsync("alert", AlertText);
+    }
+
+    private async Task ShowDescription()
+    {
+        ShouldShowDescription = await JsRuntime.InvokeAsync<bool>("confirm", "Should I show the description?");
+    }
+
+    private void ShowToast()
+    {
+        ToastService.ShowInfo("My first toast message");
+    }
+
+    private async Task ShowSweetAlert()
+    {
+        await JsRuntime.InvokeVoidAsync("Swal.fire", "My first sweet alert");
+    }
+
+    private async Task ShowSweetAlertAdvanced()
+    {
+        await JsRuntime.SwalAdvanced("error", "Oooops", "Something went wrong", "Click me", "https://www.google.com");
+    }
+}
