@@ -1,0 +1,50 @@
+﻿<h3>@Text</h3>
+
+
+@code {
+    [Parameter]
+    public string Text{ get; set; }
+
+    public override Task SetParametersAsync(ParameterView parameters)
+    {
+        var r = base.SetParametersAsync(parameters);
+
+
+        return r;
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+    }
+
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        return base.OnAfterRenderAsync(firstRender);
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+
+    protected override Task OnInitializedAsync()
+    {
+        return base.OnInitializedAsync();
+    }
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+    }
+
+    protected override Task OnParametersSetAsync()
+    {
+        return base.OnParametersSetAsync();
+    }
+
+    protected override bool ShouldRender()
+    {
+        return base.ShouldRender();
+    }
+}

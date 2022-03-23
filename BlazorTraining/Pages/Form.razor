@@ -1,0 +1,76 @@
+﻿@page "/form"
+@using BlazorTraining.Model
+
+@*<EditForm Model=@student OnSubmit=Submit>*@
+<EditForm Model=@student OnInvalidSubmit=InvalidSubmit OnValidSubmit=ValidSubmit>
+
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div>
+        <span>Id: </span>
+        <InputNumber @bind-Value="@student.Id"></InputNumber>
+        <ValidationMessage For="() => student.Id" />
+    </div>
+    <div>
+        <span>Name: </span>
+        <InputText @bind-Value="@student.Name"></InputText>
+        <ValidationMessage For="() => student.Name" />
+    </div>
+    <div>
+        <span>Last name: </span>
+        <InputText @bind-Value="@student.LastName"></InputText>
+        <ValidationMessage For="() => student.LastName" />
+    </div>
+    <div>
+        <span>Sex: </span>
+        <InputSelect @bind-Value="@student.Sex">
+            @foreach (var value in Enum.GetValues(typeof(Sex)))
+            {
+                <option>@value</option>
+            }
+        </InputSelect>
+        <ValidationMessage For="() => student.Sex" />
+    </div>
+    <div>
+        <span>Date of Birth: </span>
+        <InputDate @bind-Value="@student.DateOfBirth" @bind-Value:format="dd.MM.yyyy"></InputDate>
+        <ValidationMessage For="() => student.DateOfBirth" />
+    </div>
+    <div>
+        <span>Age: </span>
+        <InputNumber @bind-Value="@student.Age"></InputNumber>
+        <ValidationMessage For="() => student.Age" />
+    </div>
+    <div>
+        <span>Is active?: </span>
+        <InputCheckbox @bind-Value="@student.IsActive"></InputCheckbox>
+    </div>
+    <div>
+        <input type="submit" value="Send" />
+    </div>
+</EditForm>
+
+@code {
+    StudentWithValidation student = new StudentWithValidation();
+
+    protected override void OnInitialized()
+    {
+        student.DateOfBirth = DateTime.Now;
+        base.OnInitialized();
+    }
+
+    public void Submit(EditContext context)
+    {
+        
+    }
+
+    public void InvalidSubmit(EditContext context)
+    {
+    }
+
+    public void ValidSubmit(EditContext context)
+    {
+       
+    }
+}
