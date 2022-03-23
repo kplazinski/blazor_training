@@ -1,0 +1,46 @@
+﻿@page "/template-component"
+@using BlazorTraining.Model
+
+<TemplateComponent Title="Studenci" Items=students>
+    <HeaderTemplate>
+        <th>Imię</th>
+        <th>Nazwisko</th>
+        <th>Wiek</th>
+        <th>Czy konto aktywne?</th>
+    </HeaderTemplate>
+    <RowTemplate>
+        <td>@context.Name</td>
+        <td>@context.LastName</td>
+        <td>@context.Age</td>
+        <td><input type="checkbox" disabled  checked="@(context.IsActive ? "checked":null)"/></td>
+    </RowTemplate>
+</TemplateComponent>
+
+<TemplateComponent Title="Firmy" Items=companies Context=c>
+    <HeaderTemplate>
+        <th>Nazwa firmy</th>
+        <th>Ulica</th>
+        <th>Miasto</th>
+        <th>Kraj</th>
+    </HeaderTemplate>
+    <RowTemplate>
+        <td>@c.CompanyName</td>
+        <td>@c.CompanyAddress.Street</td>
+        <td>@c.CompanyAddress.City</td>
+        <td>@c.CompanyAddress.Country</td>
+    </RowTemplate>
+</TemplateComponent>
+
+@code {
+    List<Student> students = new List<Student>
+    {
+        new Student(1, "Jan", "Kowalski", 23, true),
+        new Student(2, "Anna", "Nowak", 22, false)
+    };
+
+    List<Company> companies = new List<Company>
+    {
+        new Company(1, "Firma1", new CompanyAddress("Prosta","Warszawa","Polska")),
+        new Company(2, "Firma2", new CompanyAddress("Krzywa","Kraków", "Polska"))
+    };
+}
