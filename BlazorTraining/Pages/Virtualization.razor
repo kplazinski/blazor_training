@@ -1,0 +1,29 @@
+﻿@page "/virtualization"
+@using BlazorTraining.Model
+
+<Virtualize Context=s ItemsProvider=GetItems >
+    <StudentDetails Name=@s.Name
+                LastName=@s.LastName
+                Age=@s.Age
+                Id=@s.Id
+                IsActive=@s.IsActive></StudentDetails>
+</Virtualize>
+
+@code {
+    List<Student> students;
+
+    protected override void OnInitialized()
+    {
+        students = new List<Student>();
+        for (int i=0;i<10000;i++)
+        {
+            students.Add(new Student(i, "Jan", "Kowalski", 23, true));    
+        }
+    }
+
+    private async ValueTask<ItemsProviderResult<Student>> GetItems(ItemsProviderRequest request)
+    {
+        await Task.Delay(2000);
+        return new ItemsProviderResult<Student>(students.Skip(request.StartIndex).Take(request.Count), students.Count);
+    }
+}
