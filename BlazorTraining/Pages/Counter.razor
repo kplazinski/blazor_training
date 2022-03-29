@@ -1,0 +1,20 @@
+﻿@page "/counter"
+
+
+<button class="inc" @onclick="Increase">Increase</button>
+<button class="dec" @onclick="Decrease">Decrease</button>
+<br/>
+<span>@HowManyTimes</span>
+@code {
+    private int HowManyTimes { get; set; } = 0;
+
+    private void Increase()
+    {
+        HowManyTimes++;
+    }
+
+    private void Decrease()
+    {
+        HowManyTimes--;
+    }
+}

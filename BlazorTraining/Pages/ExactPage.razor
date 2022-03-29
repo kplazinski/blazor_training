@@ -1,0 +1,25 @@
+﻿@page "/exact-page"
+@page "/exact-page/{Page:int}"
+@inject NavigationManager Navi
+
+@if (@Page.HasValue)
+{
+    <span>Selected page: @Page</span>
+}
+else
+{
+    <span>No selected page</span>
+}
+
+<a href="/exact-page/5">Direct call</a>
+<a href="" @onclick:preventDefault @onclick="() => Go(10)">With navigation manager</a>
+
+@code {
+    [Parameter]
+    public int? Page { get; set; }
+
+    private void Go(int pageId)
+    {
+        Navi.NavigateTo("/exact-page/" + pageId);
+    }
+}
