@@ -1,0 +1,54 @@
+﻿@page "/Invoke-net-from-js"
+@inject IJSRuntime JsRuntime
+
+<div>
+    <span>@Counter</span>
+    <button @onclick=InvokeIncrementJs>Increment from js</button>
+</div>
+
+<div>
+    <input type="text" @bind-value=Message />
+    <button value="MessageFromJs" @onclick=InvokeMessageJs>Message from Js</button>
+    <span>@MessageToUpper</span>
+</div>
+@code {
+    private int Counter { get; set; }
+    public string Message { get; set; }
+    public string MessageToUpper { get; set; }
+    public DotNetObjectReference<Invoke_net_from_js> dotNetRef = null;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        if (firstRender)
+        {
+            dotNetRef = DotNetObjectReference.Create(this);
+        }
+    }
+
+    public async Task InvokeIncrementJs()
+    {   
+        await JsRuntime.InvokeVoidAsync("HitIncrementInJs", dotNetRef);
+    }
+
+    [JSInvokable("HitIncrement")]
+    public void HitIncrement()
+    {
+        Counter++;
+    }
+
+
+
+    public async Task InvokeMessageJs()
+    {
+        var result = await JsRuntime.InvokeAsync<string>("HitMessageChangeInJs", dotNetRef, Message);
+        MessageToUpper = result;
+    }
+
+    [JSInvokable("ChangeMesage")]
+    public string ChangeMesage()
+    {
+        return Message.ToUpper();
+    }
+}
