@@ -1,0 +1,32 @@
+﻿@page "/api-consumption"
+@inject HttpClient HttpClient
+
+@if (posts == null || !posts.Any())
+{
+    <p>No posts found.</p>
+}
+else
+{
+    <ul>
+        @foreach (var post in posts)
+        {
+            <li>@post.Title</li>
+        }
+    </ul>
+}
+
+@code {
+    Post[]? posts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // https://jsonplaceholder.typicode.com/posts
+        posts = await HttpClient.GetFromJsonAsync<Post[]>("/posts");
+    }
+
+    public class Post
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+    }
+}
