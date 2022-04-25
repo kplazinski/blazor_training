@@ -1,5 +1,6 @@
 ﻿@page "/api-consumption"
 @inject HttpClient HttpClient
+@inject IHttpClientFactory ClientFactory
 
 @if (posts == null || !posts.Any())
 {
@@ -23,6 +24,13 @@ else
         // https://jsonplaceholder.typicode.com/posts
         posts = await HttpClient.GetFromJsonAsync<Post[]>("/posts");
     }
+
+    ////protected override async Task OnInitializedAsync()
+    ////{
+    ////    // https://jsonplaceholder.typicode.com/posts
+    ////    var client = ClientFactory.CreateClient("SuperApi");
+    ////    posts = await client.GetFromJsonAsync<Post[]>("/posts");
+    ////}
 
     public class Post
     {

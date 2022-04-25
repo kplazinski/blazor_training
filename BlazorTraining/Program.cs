@@ -10,7 +10,10 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://jsonplaceholder.typicode.com") });
+var apiUrl = new Uri("https://jsonplaceholder.typicode.com");
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = apiUrl });
+builder.Services.AddHttpClient("SuperApi", client => client.BaseAddress = apiUrl);
+
 builder.Services.AddBlazoredToast();
 
 await builder.Build().RunAsync();
