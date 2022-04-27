@@ -1,5 +1,5 @@
-Blazor training
-Some basic stuff which can be done in Microsoft Blazor WebAssembly (coded on .NET 6 + Visual Studio 2022) including:
+# Blazor training
+## Some basic stuff which can be done in Microsoft Blazor WebAssembly (coded on .NET 6 + Visual Studio 2022) including:
 
 1. One direction data binding
 2. Two directions data binding
